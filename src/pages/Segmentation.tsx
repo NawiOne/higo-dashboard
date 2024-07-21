@@ -33,17 +33,15 @@ const Segmentation = () => {
   if (loading) return <Loading />
 
   return (
-    <>
-      <div className="mt-4 grid grid-cols-10  md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartAge data={data?.ageGroup} />
-        <ChartGender data={data?.gender} />
-        <ChartBrandDevice data={data?.brandDevice} />
-        <ChartDigitalInterest data={data?.digitalInterest} />
-        {/* <ChartThree />
+    <div className="mt-4 grid grid-cols-10  md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+      <ChartAge data={data?.ageGroup} />
+      <ChartGender data={data?.gender} />
+      <ChartBrandDevice data={data?.brandDevice} />
+      <ChartDigitalInterest data={data?.digitalInterest} />
+      {/* <ChartThree />
       <ChartThree />
       <ChartThree /> */}
-      </div>
-    </>
+    </div>
   );
 };
 

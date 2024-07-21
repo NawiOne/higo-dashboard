@@ -102,7 +102,7 @@ const ChartDigitalInterest: React.FC = ({ data }) => {
               <div className="flex w-full items-center">
                 <span className={`${colorVariants[item.interest]}`}></span>
                 <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-                  <span>{item.brand}</span>
+                  <span>{item.interest}</span>
                   <span>{item.percentage.toFixed(1)}%</span>
                 </p>
               </div>
