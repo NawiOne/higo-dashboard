@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import ChartAge from '../components/ChartAge';
 import ChartGender from '../components/ChartGender';
-import ChartBrandDevice from '../components/ChartBrandDevice';
+import ChartBrandDevice from '../components/ChartBanrdDevice';
 import ChartDigitalInterest from '../components/ChartDigitalInterest';
 import Loading from '../components/Loading';
 
