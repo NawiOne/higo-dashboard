@@ -1,4 +1,3 @@
-import { ApexOptions } from 'apexcharts';
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
@@ -45,7 +44,7 @@ const options = {
   ],
 };
 
-const ChartAge: React.FC = ({ data }) => {
+const ChartAge = ({ data }) => {
   const [series, setSeries] = useState({
     series: [],
     color: [],

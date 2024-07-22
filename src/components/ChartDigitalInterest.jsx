@@ -1,4 +1,3 @@
-import { ApexOptions } from 'apexcharts';
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
@@ -44,7 +43,7 @@ const options = {
   ],
 };
 
-const ChartDigitalInterest: React.FC = ({ data }) => {
+const ChartDigitalInterest = ({ data }) => {
   const [series, setSeries] = useState({
     series: [],
     color: [],

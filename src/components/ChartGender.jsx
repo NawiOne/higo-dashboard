@@ -5,8 +5,8 @@ const options = {
   chart: {
     type: 'donut',
   },
-  colors: [],
-  labels: [],
+  colors: ['#0077b6', '#ffbe0b'],
+  labels: ['Female', 'Male'],
   legend: {
     show: false,
     position: 'bottom',
@@ -43,7 +43,7 @@ const options = {
   ],
 };
 
-const ChartBrandDevice: React.FC = ({ data }) => {
+const ChartGender = ({ data }) => {
   const [series, setSeries] = useState({
     series: [],
     color: [],
@@ -52,27 +52,18 @@ const ChartBrandDevice: React.FC = ({ data }) => {
 
   useEffect(() => {
     const newSeries = data?.filter(item => item.percentage > 0).map(item => Number(item.percentage.toFixed(1)));
-    const newColors = data?.filter(item => item.percentage > 0).map(item => item.color)
-    const newLabels = data?.filter(item => item.percentage > 0).map(item => item.brand)
-    setSeries({
+    const newColors = data?.filter(item => item.percentage > 0).map(item => item.color);
+    const newLabels = data?.filter(item => item.percentage > 0).map(item => item.gender);
+    setSeries({ 
       series: newSeries,
       color: newColors,
-      label: newLabels
+      label: newLabels,
     });
-
   }, [data]);
 
   const colorVariants = {
-    'Huawei': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#ffbe0b]',
-    'Xiaomi': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0077b6]',
-    'LG': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8338ec]',
-    'Nokia': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#FF0000]',
-    'Motorola': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#A1DD70]',
-    'Sony': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#DBB5B5]',
-    'OnePlus': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#3f7d20]',
-    'Samsung': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#ee6c4d]',
-    'Apple': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#540b0e]',
-    'Google': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#2ec4b6]',
+    'Male': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#ffbe0b]',
+    'Female': 'mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0077b6]',
   }
 
   return (
@@ -80,16 +71,16 @@ const ChartBrandDevice: React.FC = ({ data }) => {
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
           <h5 className="text-xl font-semibold text-black dark:text-white">
-            Brand Device
+            Gender
           </h5>
         </div>
 
       </div>
 
       <div className="mb-2">
-        <div id="ChartBrandDevice" className="mx-auto flex justify-center">
+        <div id="ChartGender" className="mx-auto flex justify-center">
           <ReactApexChart
-            options={{ ...options, colors: series.color, labels: series.label }}
+            options={{...options, colors: series.color, labels: series.label}}
             series={series.series}
             type="donut"
           />
@@ -101,9 +92,9 @@ const ChartBrandDevice: React.FC = ({ data }) => {
           return (
             <div className="w-full px-8 sm:w-1/2" key={index}>
               <div className="flex w-full items-center">
-                <span className={`${colorVariants[item.brand]}`}></span>
+                <span className={`${colorVariants[item.gender]}`}></span>
                 <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
-                  <span>{item.brand}</span>
+                  <span>{item.gender}</span>
                   <span>{item.percentage.toFixed(1)}%</span>
                 </p>
               </div>
@@ -112,9 +103,10 @@ const ChartBrandDevice: React.FC = ({ data }) => {
         }
         )}
 
+
       </div>
     </div>
   );
 };
 
-export default ChartBrandDevice;
+export default ChartGender;

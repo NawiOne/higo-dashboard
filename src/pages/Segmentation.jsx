@@ -38,9 +38,6 @@ const Segmentation = () => {
       <ChartGender data={data?.gender} />
       <ChartBrandDevice data={data?.brandDevice} />
       <ChartDigitalInterest data={data?.digitalInterest} />
-      {/* <ChartThree />
-      <ChartThree />
-      <ChartThree /> */}
     </div>
   );
 };

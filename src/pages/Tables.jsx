@@ -3,7 +3,7 @@ import Loading from '../components/Loading'
 import axios from 'axios';
 import userLogo from '../images/user.png'
 
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 async function fecthListUser(page, limit) {
   const api = process.env.REACT_APP_LIST_API
@@ -13,6 +13,7 @@ async function fecthListUser(page, limit) {
   return results.data.data
 
 }
+
 
 const Tables = () => {
   const [data, setData] = useState(null)
@@ -38,7 +39,7 @@ const Tables = () => {
             List User
           </h4>
         </div>
-
+        <Outlet />
         <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
           <div className="col-span-3 flex items-center">
             <p className="font-medium">Name</p>
@@ -56,7 +57,7 @@ const Tables = () => {
         {
           data?.map((item, index) => (
             <Link
-              to={`/detail-user?email=${item.email}`}
+              to={`detail?email=${item.email}`}
               // state={{ email: item.email }}
               className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
               key={index}

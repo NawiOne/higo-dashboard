@@ -1,38 +1,56 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading'
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import locationLogo from '../images/location.png'
+import NotFound from '../components/NotFound';
 
 
 
 async function fetchDetailUser(email) {
   const api = process.env.REACT_APP_DETAIL_API
   const url = `${api}/${email}`
-  const results = await axios.get(url)
 
-  return results.data.data
+  try {
+    const results = await axios.get(url)
+
+    return results.data.data
+  } catch (error) {
+    return error.response.data
+
+  }
+
+
+
 
 }
 
 const Detail = () => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [notFound, setNotFound] = useState(false)
 
   const [searchParams] = useSearchParams()
   const email = searchParams.get('email')
 
   useEffect(() => {
     (async () => {
+
       setLoading(true)
+
       const response = await fetchDetailUser(email)
 
-      setData(response)
+      if (response.code === 404) setNotFound(true)
+      else setData(response)
+
       setLoading(false)
+
     })()
   }, [])
 
   if (loading) return <Loading />
+  if (notFound) return <NotFound />
+
 
   return (
     <div className="mx-auto max-w-270">
